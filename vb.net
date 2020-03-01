@@ -1,0 +1,57 @@
+'Scan all primitive data types
+Imports System
+
+' This is a dice roll guessing game. This program uses a function to return a value and uses random function.
+' @author Michias Shiferaw
+' @Version 2.0
+' @since 2020-02-29.
+Public Class GuessDice
+
+    'This is a dice roll guessing game. This program uses a function to return a value and uses random function.
+    '@author Michias Shiferaw
+    '@Version 2.0
+    '@since 2020-02-29.
+
+    Private Sub BtnOperate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnOperate.Click
+
+        'Input all necessary integer variables
+        Dim guess As Integer
+        Dim maxValue As Integer
+        Dim counter As Integer
+        Dim diceNum As Integer
+        Dim randNum As Integer
+
+        maxValue = InputBox("Input a value for the max value of sides on your dice " & "must be a value bigger than 0.")
+
+        randNum = Int((maxValue * Rnd()) + 1)
+
+        diceNum = 0
+
+        guess = InputBox("And the dice lands on the number...?")
+
+        counter = counter + 1
+
+        Do While maxValue > 0
+            Try
+
+
+                If guess = randNum Then
+                    MsgBox("Way to go!")
+                    MsgBox("You guessed it in the random number of " & randNum & " in " & counter & " rolls.")
+                    Exit Do
+                Else
+                    MsgBox("Your number of " & guess & " is incorrect. Guess again!")
+                    guess = InputBox("And the dice lands on the number...?")
+                    counter = counter + 1
+                End If
+
+            Catch nfe As System.FormatException
+                MsgBox("Unfortunately you did not meet the " & "requirements of a value larger than 0!")
+
+                'Close the program as the value inputted is not qualified to continue the program
+                Me.Close()
+
+            End Try
+        Loop
+    End Sub
+End Class
